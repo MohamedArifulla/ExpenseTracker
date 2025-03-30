@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker</title>
+  <link rel="manifest" href="manifest.json">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For charts -->
+</head>
+
+<body>
+  <!-- Auth UI (shown by default) -->
+  <div id="auth">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="signUp()">Sign Up</button>
+    <button onclick="login()">Login</button>
+    <button onclick="googleLogin()">Google Sign-In</button>
+  </div>
+
+  <!-- App UI (hidden until login) -->
+  <div id="app" style="display: none;">
+    <!-- Add Expense -->
+    <input type="number" id="amount" placeholder="₹ Amount">
+    <select id="category">
+      <option value="Food">Food</option>
+      <option value="Travel">Travel</option>
+      <option value="Shopping">Shopping</option>
+    </select>
+    <input type="date" id="date">
+    <button onclick="addExpense()">Add Expense</button>
+
+    <!-- Budget -->
+    <input type="number" id="budget" placeholder="Monthly Budget (₹)">
+    <button onclick="setBudget()">Set Budget</button>
+
+    <div id="recurring-section">
+      <h3>Recurring Expenses</h3>
+      <input type="number" id="recurAmount" placeholder="₹ Amount">
+      <input type="text" id="recurDescription" placeholder="Description"> <!-- Add this line -->
+      <select id="recurCategory">
+        <option value="Rent">Rent</option>
+        <option value="Bills">Bills</option>
+      </select>
+      <select id="recurFrequency">
+        <option value="1">Monthly</option>
+        <option value="3">Quarterly</option>
+      </select>
+      <button onclick="addRecurring()">Add Recurring</button>
+
+      <div id="recurringList"></div>
+    </div>
+
+    <!-- Charts -->
+    <div style="width: 80%; margin: 20px auto;">
+      <canvas id="monthlyChart"></canvas>
+      <canvas id="categoryChart"></canvas>
+    </div>
+
+    <!-- Expenses List -->
+    <div id="expensesList"></div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module" src="./firebase-init.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+
+</html>
